@@ -5,7 +5,7 @@
 struct vertex{
     int name, key;
     struct vertex *next;
-};
+}; *top;
 
 main(){
     struct vertex *new, *top;
@@ -41,3 +41,19 @@ main(){
     }
     printf("\n");
 }
+
+find_key();
+
+find_key(int k)
+{
+    struct vertex *w;
+
+    w = top;
+    while(w != NULL){
+        if(k == w->key)
+            return(1);
+        w = w->next;
+    }
+    return 0;
+}
+
