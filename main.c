@@ -8,7 +8,7 @@ void delete_key();
 struct vertex{
     int name, key;
     struct vertex *next;
-} *top;/**/
+} *top;/* struct vertex型のポインタ型topを宣言　*/
 
 
 int main(){
@@ -22,18 +22,22 @@ int main(){
     printf("各要素を入力してください\n");
     top = NULL;
     while(1){
+
+        /*ユーザーの入力を受け付ける*/
         printf("  nameの値を入力してください：　");
         scanf("%d", &n);
-        if(n < 0) break;
+        if(n < 0) break;/*ユーザがnameに負の数を入力するまで繰り返される*/
         printf(" keyの値を入力してください：　");
         scanf("%d", &k);
         if(find_key(k) == 1){
+            /* keyに被りがある場合　*/
             printf("  key: %d は既登録です\n", k);
             printf("    keyが %d のものを削除しますか？\n", k);
             printf("      YES: 1 / No: 0 ==");
             scanf("%d",& ans);
             if(ans == 1) delete_key(k);
             else printf("  もう一度 name の値から入力してください\\n");
+
         }
         else {
             new = (struct vertex *) malloc(sizeof(struct vertex));
@@ -41,8 +45,11 @@ int main(){
              * vertex型構造体をメモリ上に置くために必要なメモリ領域をsizeof関数で求め, その分だけメモリ領域を確保する。
              * 左側の丸括弧でstruct vertex * 型のデータ型を持つポインタ値にすることを指定している。
              * */
+
+            /*　ユーザーが入力したものをnew構造体に記録する*/
             new->name = n;
             new->key = k;
+            /*リストの頭をnewに変更(newが新しいリストの頭になる)*/
             new->next = top;
             top = new;
         }
